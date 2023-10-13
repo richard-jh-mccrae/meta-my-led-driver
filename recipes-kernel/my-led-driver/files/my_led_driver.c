@@ -3,6 +3,7 @@
 #include <linux/gpio.h>
 #include <linux/platform_device.h>
 #include <linux/kobject.h>
+#include <linux/string.h>
 
 static struct gpio_desc *led0 = NULL;
 static int led0_state = 0;
@@ -31,8 +32,7 @@ static int my_module_probe(struct platform_device *pdev)
 {
 	int err;
     const char *label;
-	char *name;
-	char *machine;
+	char name[32] = {0};
 
 	struct device *dev = &pdev->dev;
 	struct fwnode_handle *fwnode_btn0;
@@ -46,7 +46,7 @@ static int my_module_probe(struct platform_device *pdev)
 	} else if (strcmp(MACHINE, "beaglebone-yocto") == 0) {
 		strcpy(name, "led2");
 	} else {
-		printk("Unsupported machine type\n");
+		printk("Unsupported machine type: %s\n", MACHINE);
 		return -1;
 	}
 #else

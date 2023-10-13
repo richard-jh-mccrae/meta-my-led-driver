@@ -2,7 +2,7 @@ obj-m := my_led_driver.o
 
 SRC := $(shell pwd)
 
-EXTRA_CFLAGS += -DMACHINE_NAME=\"$(MACHINE)\"
+EXTRA_CFLAGS += -DMACHINE=\"$(MACHINE)\"
 
 all:
 	$(MAKE) -C $(KERNEL_SRC) M=$(SRC)

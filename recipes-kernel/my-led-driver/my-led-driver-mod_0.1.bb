@@ -19,3 +19,8 @@ RPROVIDES:${PN} += "kernel-module-my_led_driver"
 do_compile() {
     oe_runmake 'MACHINE=${MACHINE}'
 }
+
+#do_compile() {
+#    export MACHINE
+#    oe_runmake
+#}
